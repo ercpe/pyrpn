@@ -20,13 +20,12 @@ class RPN(object):
 		for x in expression if isinstance(expression, (list, tuple)) else expression.strip().split():
 			if x in vars:
 				tokens.append(vars[x])
-			elif x in OPERATORS:
+			elif x in OPERATORS or isinstance(x, (int, float)):
 				tokens.append(x)
 			else:
 				tokens.append(float(x) if '.' in x or 'e' in x.lower() else int(x))
 
 		while len(tokens) > 1:
-			print("Current token list: %s" % tokens)
 			for i, token in enumerate(tokens):
 				if token in OPERATORS:
 					assert i >= 2
