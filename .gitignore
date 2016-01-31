@@ -67,3 +67,5 @@ target/
 
 # PyCharm
 .idea
+
+src/test.py
