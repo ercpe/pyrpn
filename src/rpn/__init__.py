@@ -3,13 +3,21 @@ from __future__ import division
 import operator
 
 OPERATORS = {
+	# MATH
 	'+': operator.add,
 	'-': operator.sub,
 	'*': operator.mul,
 	'/': lambda a, b: a / b,
 	'^': operator.pow,
-}
 
+	# BOOL
+	'LT': lambda a, b: int(operator.lt(a, b)),
+	'LE': lambda a, b: int(operator.le(a, b)),
+	'GT': lambda a, b: int(operator.gt(a, b)),
+	'GE': lambda a, b: int(operator.ge(a, b)),
+	'EQ': lambda a, b: int(operator.eq(a, b)),
+	'NE': lambda a, b: int(operator.ne(a, b)),
+}
 
 class RPN(object):
 
