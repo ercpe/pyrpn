@@ -31,7 +31,12 @@ OPERATORS = {
 	'EQ': RPNOperator(lambda a, b: int(operator.eq(a, b)), 2),
 	'NE': RPNOperator(lambda a, b: int(operator.ne(a, b)), 2),
 
-	'IF': RPNOperator(lambda a, b, c: b if isinstance(a, int) and a == 1 else c, 3)
+	#UN, ISINF
+	'IF': RPNOperator(lambda a, b, c: b if isinstance(a, int) and a == 1 else c, 3),
+
+	# COMPARE
+	'MIN': RPNOperator(min, 2),
+	'MAX': RPNOperator(max, 2),
 }
 
 class RPN(object):
