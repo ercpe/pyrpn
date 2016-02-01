@@ -37,6 +37,13 @@ class TestBooleanOperators(object):
 		self._assert_result(r.calc('2 1 NE'))
 		self._assert_result(r.calc('2 2 NE'), False)
 
+	def test_if(self):
+		r = RPN()
+
+		assert r.calc('1 2 3 IF') == 2
+		assert r.calc('0 2 3 IF') == 3
+
 	def _assert_result(self, result, b=True):
 		assert isinstance(result, int) and not isinstance(result, bool), "Boolean operators must return 0 or 1 instead of True and False"
 		assert result == int(b)
+
