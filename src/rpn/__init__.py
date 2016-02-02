@@ -15,6 +15,12 @@ class RPNOperator(object):
 		return tokens
 
 
+def operator_limit(value, low, high):
+	if low <= value <= high:
+		return value
+	return None
+
+
 OPERATORS = {
 	# MATH
 	'+': RPNOperator(operator.add, 2),
@@ -37,6 +43,8 @@ OPERATORS = {
 	# COMPARE
 	'MIN': RPNOperator(min, 2),
 	'MAX': RPNOperator(max, 2),
+	# MINNAN, MAXNAN
+	'LIMIT': RPNOperator(operator_limit, 3),
 }
 
 class RPN(object):
