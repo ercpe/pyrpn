@@ -2,6 +2,8 @@
 from __future__ import division
 import operator
 
+import math
+
 
 class RPNOperator(object):
 
@@ -28,6 +30,20 @@ OPERATORS = {
 	'*': RPNOperator(operator.mul, 2),
 	'/': RPNOperator(lambda a, b: a / b, 2),
 	'^': RPNOperator(operator.pow, 2),
+
+	# ARITHMETICS
+	'SIN': RPNOperator(math.sin, 1),
+	'COS': RPNOperator(math.cos, 1),
+	'LOG': RPNOperator(math.log, 1),
+	'EXP': RPNOperator(math.exp, 1),
+	'SQRT': RPNOperator(math.sqrt, 1),
+	'ATAN': RPNOperator(math.atan, 1),
+	'DEG2RAD': RPNOperator(math.radians, 1),
+	'RAD2DEG': RPNOperator(math.degrees, 1),
+
+	'FLOOR': RPNOperator(math.floor, 1),
+	'CEIL': RPNOperator(math.ceil, 1),
+	'ABS': RPNOperator(abs, 1),
 
 	# BOOL
 	'LT': RPNOperator(lambda a, b: int(operator.lt(a, b)), 2),
