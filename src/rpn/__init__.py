@@ -4,6 +4,25 @@ import operator
 
 import math
 
+class UnknownType(float):
+
+	def __add__(self, other):
+		return Unknown
+
+	def __sub__(self, other):
+		return Unknown
+
+	def __mod__(self, other):
+		return Unknown
+
+	def __div__(self, other):
+		return Unknown
+
+	def __mul__(self, other):
+		return Unknown
+
+Unknown = UnknownType()
+
 
 class RPNOperator(object):
 
@@ -13,7 +32,12 @@ class RPNOperator(object):
 
 	def __call__(self, tokens, pos):
 		args = tokens[pos - self.num_elems:pos]
-		tokens[pos-self.num_elems:pos+1] = [self.func(*tuple(args))]
+		try:
+			result = [self.func(*tuple(args))]
+		except ZeroDivisionError:
+			result = [Unknown]
+
+		tokens[pos-self.num_elems:pos+1] = result
 		return tokens
 
 
@@ -71,7 +95,7 @@ class RPN(object):
 
 		for x in expression if isinstance(expression, (list, tuple)) else expression.strip().split():
 			if x in vars:
-				tokens.append(vars[x])
+				tokens.append(vars[x] if vars[x] is not None else Unknown)
 			elif x in OPERATORS or isinstance(x, (int, float)):
 				tokens.append(x)
 			else:
