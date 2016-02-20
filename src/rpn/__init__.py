@@ -46,13 +46,18 @@ def operator_limit(value, low, high):
 		return value
 	return None
 
+def div_or_unknown(a, b):
+	try:
+		return a / b
+	except ZeroDivisionError:
+		return Unknown
 
 OPERATORS = {
 	# MATH
 	'+': RPNOperator(operator.add, 2),
 	'-': RPNOperator(operator.sub, 2),
 	'*': RPNOperator(operator.mul, 2),
-	'/': RPNOperator(lambda a, b: a / b, 2),
+	'/': RPNOperator(div_or_unknown, 2),
 	'^': RPNOperator(operator.pow, 2),
 
 	# ARITHMETICS
