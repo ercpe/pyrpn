@@ -3,7 +3,7 @@ import math
 from rpn import RPN
 
 
-class TestArtithmetics(object):
+class TestArithmetics(object):
 
 	def test_sin(self):
 		assert RPN().calc('1 SIN') == 0.8414709848078965
