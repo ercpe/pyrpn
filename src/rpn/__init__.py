@@ -104,7 +104,7 @@ class RPN(object):
 			elif x in OPERATORS or isinstance(x, (int, float)):
 				tokens.append(x)
 			else:
-				tokens.append(float(x) if '.' in x or 'e' in x.lower() else int(x))
+				tokens.append(float(x) if '.' in x else int(x))
 
 		while len(tokens) > 1:
 			for i, token in enumerate(tokens):
